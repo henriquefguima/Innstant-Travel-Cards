@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Maria Garrido · Innstant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;700;800&family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #17161f;
+      --orange: #ff8000;
+      --white: #ffffff;
+      --text-dark: #17161f;
+      --serif: "Playfair Display", Georgia, serif;
+      --sans: "Overpass", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      background: var(--bg);
+      color: var(--white);
+      min-height: 100%;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      padding: 20px 36px 40px;
+    }
+
+    /* respiro no topo para a bolinha do logo */
+    #card-capture { padding-top: 10px; }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .logo {
+      position: relative;
+      font-family: var(--sans);
+      font-weight: 800;
+      font-size: 34px;
+      line-height: 1;
+      letter-spacing: -0.5px;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    /* orange dot replacing the dot of the "i" */
+    .logo::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: -8px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--orange);
+    }
+
+    .tag {
+      font-family: var(--sans);
+      font-size: 14px;
+      color: var(--orange);
+      letter-spacing: 0.3px;
+    }
+
+    /* Name & title */
+    .name {
+      margin-top: 44px;
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 36px;
+      line-height: 1.15;
+      letter-spacing: -0.3px;
+    }
+
+    .role {
+      margin-top: 6px;
+      font-family: var(--sans);
+      font-size: 15px;
+      letter-spacing: 0.3px;
+    }
+
+    .divider {
+      height: 2px;
+      margin-top: 18px;
+      background: var(--orange);
+      border: 0;
+    }
+
+    .tagline {
+      margin-top: 22px;
+      font-family: var(--serif);
+      font-size: 15.5px;
+      line-height: 1.25;
+    }
+
+    /* Contact details */
+    .details {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      column-gap: 16px;
+      row-gap: 20px;
+      margin-top: 58px;
+      font-family: var(--serif);
+      font-size: 15px;
+    }
+
+    .details dt { text-align: right; }
+
+    .details dd { min-width: 0; overflow-wrap: anywhere; }
+
+    .details a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .details a:hover { color: var(--orange); }
+
+    /* Buttons */
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px 11px;
+      margin-top: 36px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 46px;
+      border: 0;
+      border-radius: 10px;
+      background: var(--white);
+      color: var(--text-dark);
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: 17px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform .1s ease, filter .15s ease;
+    }
+
+    .btn:hover { filter: brightness(.92); }
+    .btn:active { transform: scale(.98); }
+    .btn:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
+
+    .btn-wide { grid-column: 1 / -1; }
+
+    .btn-primary {
+      background: var(--orange);
+      color: var(--white);
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      transform: translate(-50%, 20px);
+      max-width: calc(100% - 32px);
+      padding: 12px 18px;
+      border-radius: 10px;
+      background: var(--white);
+      color: var(--text-dark);
+      font-family: var(--sans);
+      font-size: 14px;
+      text-align: center;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, .35);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s ease, transform .2s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    @media (max-width: 360px) {
+      .card { padding: 24px 18px 32px; }
+      .name { font-size: 31px; }
+      .details { font-size: 14px; column-gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div id="card-capture">
+    <header class="header">
+      <a class="logo" href="https://b2b.innstant.travel" target="_blank" rel="noopener" aria-label="innstant">ınnstant</a>
+      <span class="tag">Business Card</span>
+    </header>
+
+    <h1 class="name">Maria Garrido</h1>
+    <p class="role">Senior Product Executive</p>
+    <hr class="divider">
+
+    <p class="tagline">Hotels, activities, transfers and events:<br>the world in a Innstant.</p>
+
+    <dl class="details">
+      <dt>Phone:</dt>
+      <dd><a href="tel:+35314854646">+353 1 485 4646</a></dd>
+      <dt>Email:</dt>
+      <dd><a class="js-email" href="mailto:maria@innstanttravel.com">maria@innstanttravel.com</a></dd>
+      <dt>Website:</dt>
+      <dd><a href="https://b2b.innstant.travel" target="_blank" rel="noopener">https://b2b.innstant.travel</a></dd>
+    </dl>
+    </div>
+
+    <nav class="actions">
+      <button class="btn btn-primary btn-wide" type="button" id="save-contact">Save contact</button>
+      <a class="btn js-email" href="mailto:maria@innstanttravel.com">Email</a>
+      <a class="btn" href="tel:+35314854646">Phone</a>
+      <a class="btn" href="https://b2b.innstant.travel" target="_blank" rel="noopener">Website</a>
+      <a class="btn" id="meeting" href="https://calendar.google.com/calendar/render?action=TEMPLATE" target="_blank" rel="noopener">Meeting</a>
+    </nav>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    var EMAIL = "maria@innstanttravel.com";
+
+    // Pré-definições do convite no Google Agenda (edite à vontade)
+    var MEETING = {
+      title: "Meeting with Maria Garrido | Innstant",
+      details: "Meeting with Maria Garrido, Senior Product Executive at Innstant.\n\n" +
+               "Phone: +353 1 485 4646\nEmail: " + EMAIL + "\nWebsite: https://b2b.innstant.travel",
+      location: "Google Meet",
+      guests: [EMAIL],
+      startHour: 10,       // horário sugerido (no fuso de quem abre o link)
+      durationMinutes: 30
+    };
+
+    function pad(n) { return String(n).padStart(2, "0"); }
+
+    function formatDate(d) {
+      return d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate()) +
+        "T" + pad(d.getHours()) + pad(d.getMinutes()) + "00";
+    }
+
+    // Sugere o próximo dia útil no horário definido
+    function buildMeetingUrl() {
+      var start = new Date();
+      start.setDate(start.getDate() + 1);
+      while (start.getDay() === 0 || start.getDay() === 6) start.setDate(start.getDate() + 1);
+      start.setHours(MEETING.startHour, 0, 0, 0);
+      var end = new Date(start.getTime() + MEETING.durationMinutes * 60000);
+
+      var params = new URLSearchParams({
+        action: "TEMPLATE",
+        text: MEETING.title,
+        details: MEETING.details,
+        location: MEETING.location,
+        add: MEETING.guests.join(","),
+        dates: formatDate(start) + "/" + formatDate(end),
+        ctz: Intl.DateTimeFormat().resolvedOptions().timeZone || ""
+      });
+      return "https://calendar.google.com/calendar/render?" + params.toString();
+    }
+
+    var meeting = document.getElementById("meeting");
+    meeting.href = buildMeetingUrl();
+    meeting.addEventListener("click", function () { meeting.href = buildMeetingUrl(); });
+    var toast = document.getElementById("toast");
+    var toastTimer;
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () { toast.classList.remove("show"); }, 3000);
+    }
+
+    // Abre o app de e-mail e, como reserva, copia o endereço
+    // (útil quando o aparelho não tem app de e-mail configurado)
+    document.querySelectorAll(".js-email").forEach(function (link) {
+      link.addEventListener("click", function (event) {
+        event.preventDefault();
+        try { window.top.location.href = link.href; }
+        catch (e) { window.location.href = link.href; }
+
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(EMAIL)
+            .then(function () { showToast("Email copied: " + EMAIL); })
+            .catch(function () {});
+        }
+      });
+    });
+
+    // Gera e baixa um vCard (.vcf) para salvar o contato no celular
+    document.getElementById("save-contact").addEventListener("click", function () {
+      var vcard = [
+        "BEGIN:VCARD",
+        "VERSION:3.0",
+        "N:Garrido;Maria;;;",
+        "FN:Maria Garrido",
+        "ORG:Innstant",
+        "TITLE:Senior Product Executive",
+        "TEL;TYPE=WORK,VOICE:+35314854646",
+        "EMAIL;TYPE=INTERNET,WORK:" + EMAIL,
+        "URL:https://b2b.innstant.travel",
+        "NOTE:Hotels\\, activities\\, transfers and events: the world in a Innstant.",
+        "END:VCARD"
+      ].join("\r\n");
+
+      var blob = new Blob([vcard], { type: "text/vcard;charset=utf-8" });
+      var link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "Maria-Garrido.vcf";
+      document.body.appendChild(link);
+      link.click();
+      setTimeout(function () {
+        URL.revokeObjectURL(link.href);
+        link.remove();
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
